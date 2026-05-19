@@ -150,6 +150,13 @@ pipeline {
             }
         }
 
+        stage('Helm Lint') {
+            steps {
+                echo 'Linting Helm Chart...'
+                sh 'helm lint ./helm'
+            }
+        }
+
         stage('Update Helm Values') {
             steps {
                 echo 'Updating Helm Chart values...'
