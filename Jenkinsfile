@@ -149,6 +149,21 @@ pipeline {
                 sh "docker push ${BACKEND_IMAGE}:latest"
             }
         }
+
+        stage('Update Helm Values') {
+            steps {
+                echo 'Updating Helm Chart values...'
+                // Using a more specific sed command to avoid changing the mongodb tag
+                sh """
+                sed -i '/frontend:/,/tag:/ s/tag:.*/tag: ${env.BUILD_ID}/' helm/values.yaml
+                sed -i '/backend:/,/tag:/ s/tag:.*/tag: ${env.BUILD_ID}/' helm/values.yaml
+                git config --global user.email "jenkins@example.com"
+                git config --global user.name "Jenkins Pipeline"
+                git commit -am "Update image tag to ${env.BUILD_ID}"
+                git push origin main
+                """
+            }
+        }
     }
     
     post {
