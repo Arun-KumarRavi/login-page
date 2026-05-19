@@ -15,7 +15,7 @@ spec:
         app: frontend
     spec:
       containers:
-        - name: frontend-govi
+        - name: frontend
           image: "{{ .Values.frontend.image.repository }}:{{ .Values.frontend.image.tag }}"
           imagePullPolicy: {{ .Values.frontend.image.pullPolicy }}
           ports:
