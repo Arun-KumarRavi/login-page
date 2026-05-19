@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_REGISTRY = 'your_dockerhub_username'
+        DOCKER_REGISTRY = 'arunkumarravi08'
         FRONTEND_IMAGE = "${DOCKER_REGISTRY}/login-frontend"
         BACKEND_IMAGE = "${DOCKER_REGISTRY}/login-backend"
         DOCKER_CREDENTIALS_ID = 'docker-hub-credentials'
