@@ -37,7 +37,11 @@ pipeline {
             steps {
                 dir('backend') {
                     echo 'Installing Backend dependencies...'
-                    sh 'pip install -r requirements.txt'
+                    sh '''
+                    python3 -m venv venv
+                    . venv/bin/activate
+                    pip install -r requirements.txt
+                    '''
                 }
             }
         }
@@ -70,7 +74,10 @@ pipeline {
             steps {
                 dir('backend') {
                     echo 'Running Backend Tests...'
-                    sh 'pytest test_app.py'
+                    sh '''
+                    . venv/bin/activate
+                    pytest test_app.py
+                    '''
                 }
             }
         }
