@@ -171,20 +171,6 @@ pipeline {
                 """
             }
         }
-
-        stage('Deploy to EKS') {
-            steps {
-                echo 'Deploying application to EKS cluster...'
-                // Ensure AWS credentials or IAM roles are configured in your Jenkins environment
-                sh """
-                # Update kubeconfig for EKS
-                aws eks update-kubeconfig --region us-east-1 --name your-eks-cluster-name
-                
-                # Deploy or upgrade the Helm chart
-                helm upgrade --install login-page ./helm --namespace default --create-namespace
-                """
-            }
-        }
     }
     
     post {
