@@ -10,6 +10,7 @@ MONGO_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017/login_db")
 
 try:
     client = MongoClient(MONGO_URI, serverSelectionTimeoutMS=2000)
+    client.admin.command('ping') # Verify connection
     db = client.get_database()
     users_collection = db.users
 except Exception as e:
