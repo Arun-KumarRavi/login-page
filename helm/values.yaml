@@ -19,7 +19,7 @@ backend:
     port: 5000
 
 mongodb:
-  replicaCount: 3
+  replicaCount: 1
   image:
     repository: mongo
     tag: latest
