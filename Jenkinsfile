@@ -85,14 +85,15 @@ pipeline {
         stage('SonarQube Scan') {
             steps {
                 echo 'Running SonarQube Analysis...'
-                withSonarQubeEnv('SonarQube') {
-                    sh """
-                    sonar-scanner \
-                      -Dsonar.projectKey=${SONAR_PROJECT_KEY} \
-                      -Dsonar.sources=frontend/src,backend \
-                      -Dsonar.host.url=http://sonarqube:9000 \
-                      -Dsonar.login=\$SONAR_AUTH_TOKEN
-                    """
+                script {
+                    def scannerHome = tool 'SonarQube Scanner'
+                    withSonarQubeEnv('SonarQube') {
+                        sh """
+                        ${scannerHome}/bin/sonar-scanner \
+                          -Dsonar.projectKey=${SONAR_PROJECT_KEY} \
+                          -Dsonar.sources=frontend/src,backend
+                        """
+                    }
                 }
             }
         }
