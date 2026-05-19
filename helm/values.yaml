@@ -2,7 +2,7 @@ frontend:
   replicaCount: 1
   image:
     repository: arunkumarravi08/login-frontend
-    tag: latest
+    tag: 5
     pullPolicy: IfNotPresent
   service:
     type: LoadBalancer
@@ -12,7 +12,7 @@ backend:
   replicaCount: 1
   image:
     repository: arunkumarravi08/login-backend
-    tag: latest
+    tag: 5
     pullPolicy: IfNotPresent
   service:
     type: ClusterIP
